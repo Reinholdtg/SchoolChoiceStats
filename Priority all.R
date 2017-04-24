@@ -30,13 +30,15 @@ write.table(data_a3, file='a3.csv',row.names=FALSE,col.names=TRUE)
 
 
 #----------------------COMBINE----------------------#
-file_name <- list.files("C:/Users/SRG023/Documents/combine")
-NGSim <- lapply (file_name, read.csv, sep=' ', header=T, strip.white=T) # READING ALL THE TEXT FILES
-aa<-rbind.fill(NGSim)
+setwd('C:/Users/SRG023/Documents/combine/')
+
+file_name <- list.files()
+temp <- lapply (file_name, read.csv, sep=' ', header=T, strip.white=T) # READING ALL THE TEXT FILES
+all<-rbind.fill(temp)
 head(aa)
 tail(aa)
 
-write.table(aa, file='all.csv',row.names=FALSE,col.names=TRUE)
+write.table(all, file='all.csv',row.names=FALSE,col.names=TRUE)
 
 #---------ALL---------#
 
