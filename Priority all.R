@@ -66,9 +66,9 @@ summary(fit_over1)
 
 over11<-within(over1, Precedence <- relevel(Precedence, ref = "a3"))
 
-#--MINORITY FIRST CHOICE--#
+#--ELIGIBLE FIRST CHOICE--#
 
-boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice- Minority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
 
@@ -76,9 +76,9 @@ fit_mino1 <- lm(2*Share~Reserve+Precedence, data=mino1)
 summary(fit_mino1)
 
 
-#--MAJORITY FIRST CHOICE--#
+#--INELIGILBLE FIRST CHOICE--#
 
-boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Majority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
 
@@ -93,10 +93,10 @@ par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
 means_over1 <-by(2*over1$Share,over1$Reserve,mean)
 points(means_over1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Minority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Majority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
 

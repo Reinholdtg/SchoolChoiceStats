@@ -43,9 +43,9 @@ par(mfrow=c(2,2))
 plot(fit_over1)
 
 
-#--MINORITY FIRST CHOICE--#
+#--ELIGIBLE FIRST CHOICE--#
 
-boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice- Minority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
 
@@ -57,9 +57,9 @@ par(mfrow=c(2,2))
 plot(fit_mino1)
 
 
-#--MAJORITY FIRST CHOICE--#
+#--INELIGIBLE FIRST CHOICE--#
 
-boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Majority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
 
@@ -76,10 +76,10 @@ par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
 means_over1 <-by(2*over1$Share,over1$Reserve,mean)
 points(means_over1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Minority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Majority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
 
@@ -88,9 +88,9 @@ png(file="First Choice - RO.png",width=2100, height=2970, res=350)
 par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
 points(means_over1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Minority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 points(mean_mino1, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Majority Students",xlab="Reserve Size", ylab="Share of First Choice")
+boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 points(mean_majo1, pch=17,col="orange")
 dev.off()
 
@@ -134,7 +134,7 @@ plot(fit_over5)
 
 #--MINORITY FIFHT CHOICE--#
 
-boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="Fifth Choice - Minority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="Fifth Choice - Eligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 mean_mino5<- by(2*mino5$Share,mino5$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
 
@@ -148,7 +148,7 @@ plot(fit_mino5)
 
 #--MAJORITY FIFTH CHOICE--#
 
-boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="Fifth Choice - Majority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="Fifth Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 mean_majo5<- by(2*majo5$Share,majo5$Reserve,mean)
 points(mean_majo5, pch=17,col="orange")
 
@@ -164,10 +164,10 @@ par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over5, medcol = "red", main="a) Fifth Choice - All Students", xlab="Reserve Size", ylab="Share of Fifth Choice")
 means_over5 <-by(2*over5$Share,over5$Reserve,mean)
 points(means_over5, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="b) Fifth Choice - Minority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="b) Fifth Choice - Eligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 mean_mino5<- by(2*mino5$Share,mino5$Reserve,mean)
 points(mean_mino5, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="c) Fifth Choice - Majority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="c) Fifth Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 mean_majo5<- by(2*majo5$Share,majo5$Reserve,mean)
 points(mean_majo5, pch=17,col="orange")
 
@@ -175,9 +175,9 @@ png(file="Fifth Choice - RO.png",width=2100, height=2970, res=350)
 par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over5, medcol = "red", main="a) Fifth Choice - All Students", xlab="Reserve Size", ylab="Share of Fifth Choice")
 points(means_over5, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="b) Fifth Choice - Minority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=mino5,medcol = "red", main="b) Fifth Choice - Eligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 points(mean_mino5, pch=17,col="orange")
-boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="c) Fifth Choice - Majority Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
+boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="c) Fifth Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of Fifth Choice")
 points(mean_majo5, pch=17,col="orange")
 dev.off()
 
