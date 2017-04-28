@@ -84,6 +84,7 @@ write.table(data, file='AllStat.csv',row.names=FALSE,col.names=TRUE)
 #-------DATA READY-------#
 data<-read.table(file.choose(),header=T)
 attach(data)
+detach(data)
 names(data)<-c("School", "MinoCount", "MajoCount","MinoShare", "MajoShare", "Reserve", "Variance", "Ratio","Precedence", "Distance")
 head(data)
 tail(data)
@@ -121,10 +122,7 @@ means_dis_data2 <-by(data2$Distance,data2$Reserve,mean)
 means_dis_data3 <-by(data3$Distance,data3$Reserve,mean)
 
 
-#-------SUBSETS & MEANS-------#
-
-fit1<-lm(Distance~Reserve, data=data1)
-summary(fit1)
+#-------MEANS & VARIANCE-------#
 summary(Distance, data=data1)
 summary(Distance, data=data2)
 summary(Distance, data=data3)
@@ -198,14 +196,14 @@ points(means_dis_data3, pch=17,col="orange")
 
 
 #-------SAVE PLOTS-------#
-png(file="Variance plot - All.png",width=2100, height=2970, res=350)
+png(file="Variance plot - All.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 plot(Variance~Reserve, data=data1, main="a) Variance of Student Assignment by \nthe Reserve-Open", xlab="Reserve Size", ylab="Variance")
 plot(Variance~Reserve, data=data2, main="b) Variance of Student Assignment by \nthe Toggle", xlab="Reserve Size", ylab="Variance")
 plot(Variance~Reserve, data=data3, main="c) Variance of Student Assignment by \nthe Open-Reserve", xlab="Reserve Size", ylab="Variance")
 dev.off()
 
-png(file="Variance boxplot - All.png",width=2100, height=2970, res=350)
+png(file="Variance boxplot - All.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 boxplot(Variance~Reserve, data=data1, medcol = "red", main="a) Variance of Student Assignment by \nthe Reserve-Open Precedence Order", xlab="Reserve Size", ylab="Variance")
 points(means_var_data1, pch=17,col="orange")
@@ -215,14 +213,14 @@ boxplot(Variance~Reserve, data=data3, medcol = "red", main="c) Variance of Stude
 points(means_var_data3, pch=17,col="orange")
 dev.off()
 
-png(file="Distance plot - All.png",width=2100, height=2970, res=350)
+png(file="Distance plot - All.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 plot(Distance~Reserve, data=data1, main="a) Distance Between Student Assignment by \nthe Reserve-Open Precedence Order", xlab="Reserve Size", ylab="Distance")
 plot(Distance~Reserve, data=data2, main="b) Distance Between Student Assignment by \nthe Toggle Precedence Order", xlab="Reserve Size", ylab="Distance")
 plot(Distance~Reserve, data=data3, main="c) Distance Between Student Assignment by \nthe Open-Reserve Precedence Order", xlab="Reserve Size", ylab="Distance")
 dev.off()
 
-png(file="Distance boxplot - All.png",width=2100, height=2970, res=350)
+png(file="Distance boxplot - All.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 boxplot(Distance~Reserve, data=data1, medcol = "red", main="a) Distance Between Student Assignment by \nthe Reserve-Open Precedence Order", xlab="Reserve Size", ylab="Distance")
 points(means_dis_data1, pch=17,col="orange")
@@ -232,8 +230,3 @@ boxplot(Distance~Reserve, data=data3, medcol = "red", main="c) Distance Between 
 points(means_dis_data3, pch=17,col="orange")
 dev.off()
 
-png(file="Distance boxplot - OPEN-RESERVE.png",width=2970, height=2100, res=350)
-par(mfrow=c(1,1))
-boxplot(Distance~Reserve, data=data3, medcol = "red", main="c) Distance Between Student Assignment by \nthe Open-Reserve Precedence Order", xlab="Reserve Size", ylab="Distance")
-points(means_dis_data3, pch=17,col="orange")
-dev.off()

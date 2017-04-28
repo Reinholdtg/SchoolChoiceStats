@@ -28,6 +28,10 @@ majo0 <- data[which(data$Choice==0 & data$Reserve==0 & data$Student=='+'),]
 majo0.5 <- data[which(data$Choice==0 & data$Reserve==.5 & data$Student=='+'),]
 majo1 <- data[which(data$Choice==0 & data$Reserve==1 & data$Student=='+'),]
 
+#MEANS#
+means_over1 <-by(2*over1$Share,over1$Reserve,mean)
+mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
+mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 
 #--OVERALL FIRST CHOICE--#
 
@@ -85,7 +89,7 @@ mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
 
 
-png(file="First Choice - OR.png",width=2100, height=2970, res=350)
+png(file="First Choice - OR.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="a) First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
 points(means_over1, pch=17,col="orange")
@@ -115,6 +119,11 @@ var(majo1$Share)		#0.002669791
 over5 <- data[which(data$Choice==4),]
 mino5 <- data[which(data$Choice==4 & data$Student=='-'),]
 majo5 <- data[which(data$Choice==4 & data$Student=='+'),]
+
+#MEANS#
+means_over5 <-by(2*over5$Share,over5$Reserve,mean)
+mean_mino5<- by(2*mino5$Share,mino5$Reserve,mean)
+mean_majo5<- by(2*majo5$Share,majo5$Reserve,mean)
 
 
 #--OVERALL FIFTH CHOICE--#
@@ -168,7 +177,7 @@ boxplot(2*Share~Reserve, data=majo5, medcol = "red", main="c) Fifth Choice - Ine
 mean_majo5<- by(2*majo5$Share,majo5$Reserve,mean)
 points(mean_majo5, pch=17,col="orange")
 
-png(file="Fifth Choice - OR.png",width=2100, height=2970, res=350)
+png(file="Fifth Choice - OR.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,1))
 boxplot(2*Share~Reserve, data=over5, medcol = "red", main="a) Fifth Choice - All Students", xlab="Reserve Size", ylab="Share of Fifth Choice")
 points(means_over5, pch=17,col="orange")
