@@ -44,7 +44,7 @@ detach(data_a3)
 
 
 #-------DATA READY-------#
-data<-read.table(file.choose(),header=T)
+data<-read.table(file.choose(),header=T) # CheatAll.csv
 attach(data)
 names(data)<-c("Eligible", "Cheat", "Count", "Reserve", "Precedence")
 head(data)
@@ -69,16 +69,17 @@ data_e3   <- data[which(data$Precedence=='a3' & data$Eligible==1 & data$Cheat==1
 data_in1  <- data[which(data$Precedence=='a1' & data$Eligible==0 & data$Cheat==1),]
 data_in2  <- data[which(data$Precedence=='a2' & data$Eligible==0 & data$Cheat==1),]
 data_in3  <- data[which(data$Precedence=='a3' & data$Eligible==0 & data$Cheat==1),]
-head(data1)
-tail(data1)
 
 data_a2_.5 <- data[which(data$Precedence=='a2' & data$Cheat==1 & data$Reserve>.5),]
 data_e2_.5 <- data[which(data$Precedence=='a2' & data$Cheat==1 & data$Eligible==1 & data$Reserve>.5),]
 data_in2_.5 <- data[which(data$Precedence=='a2' & data$Cheat==1 & data$Eligible==0 & data$Reserve>.5),]
 
 
-
 #-------MEANS-------#
+means_data_a1  <-by(data_a1$Count/500,data_a1$Reserve,mean)
+means_data_a2  <-by(data_a2$Count/500,data_a2$Reserve,mean)
+means_data_a3  <-by(data_a3$Count/500,data_a3$Reserve,mean)
+
 means_data_e1  <-by(data_e1$Count/500,data_e1$Reserve,mean)
 means_data_in1 <-by(data_in1$Count/500,data_in1$Reserve,mean)
 means_data_e2  <-by(data_e2$Count/500,data_e2$Reserve,mean)
@@ -118,33 +119,71 @@ mean(data_in2_.5$Count/500)
 
 #-------PLOTS-------#
 par(mfrow=c(3,2))
-boxplot(Count/500~Reserve, data=data_e1, medcol = "red", main="a) Untruthful Incentives - Eligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e1, medcol = "red",
+main="a) Untruthful Incentives - Eligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e1, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in1, medcol = "red", main="b) Untruthful Incentives - Ineligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in1, medcol = "red",
+main="b) Untruthful Incentives - Ineligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in1, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_e2, medcol = "red", main="c) Untruthful Incentives - Eligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e2, medcol = "red",
+main="c) Untruthful Incentives - Eligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e2, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in2, medcol = "red", main="d) Untruthful Incentives - Ineligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in2, medcol = "red",
+main="d) Untruthful Incentives - Ineligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in2, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_e3, medcol = "red", main="e) Untruthful Incentives - Eligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e3, medcol = "red",
+main="e) Untruthful Incentives - Eligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e3, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in3, medcol = "red", main="f) Untruthful Incentives - Ineligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in3, medcol = "red",
+main="f) Untruthful Incentives - Ineligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in3, pch=17,col="orange")
+
+par(mfrow=c(3,1))
+boxplot(Count/500~Reserve, data=data_a1, medcol = "red",
+main="a) Untruthful Incentives \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a1, pch=17,col="orange")
+boxplot(Count/500~Reserve, data=data_a2, medcol = "red",
+main="c) Untruthful Incentives \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a2, pch=17,col="orange")
+boxplot(Count/500~Reserve, data=data_a3, medcol = "red", 
+main="d) Untruthful Incentives \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a3, pch=17,col="orange")
 
 
 #-------SAVE PLOTS-------#
-png(file="Untruthful Incentives plot - All.png",width=3150, height=4455, res=500)
+png(file="Untruthful Incentives plot - Three Precedence Orders.png",width=3150, height=4455, res=500)
+par(mfrow=c(3,1))
+boxplot(Count/500~Reserve, data=data_a1, medcol = "red",
+main="a) Untruthful Incentives \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a1, pch=17,col="orange")
+boxplot(Count/500~Reserve, data=data_a2, medcol = "red",
+main="b) Untruthful Incentives \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a2, pch=17,col="orange")
+boxplot(Count/500~Reserve, data=data_a3, medcol = "red", 
+main="c) Untruthful Incentives \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+points(means_data_a3, pch=17,col="orange")
+dev.off()
+
+png(file="Untruthful Incentives plot - All Students.png",width=3150, height=4455, res=500)
 par(mfrow=c(3,2))
-boxplot(Count/500~Reserve, data=data_e1, medcol = "red", main="a) Untruthful Incentives - Eligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e1, medcol = "red",
+main="a) Untruthful Incentives - Eligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e1, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in1, medcol = "red", main="b) Untruthful Incentives - Ineligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in1, medcol = "red",
+main="b) Untruthful Incentives - Ineligible Students \nby the Reserve-Open Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in1, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_e2, medcol = "red", main="c) Untruthful Incentives - Eligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e2, medcol = "red",
+main="c) Untruthful Incentives - Eligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e2, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in2, medcol = "red", main="d) Untruthful Incentives - Ineligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in2, medcol = "red",
+main="d) Untruthful Incentives - Ineligible Students \nby the Toggle Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in2, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_e3, medcol = "red", main="e) Untruthful Incentives - Eligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_e3, medcol = "red",
+main="e) Untruthful Incentives - Eligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_e3, pch=17,col="orange")
-boxplot(Count/500~Reserve, data=data_in3, medcol = "red", main="f) Untruthful Incentives - Ineligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
+boxplot(Count/500~Reserve, data=data_in3, medcol = "red",
+main="f) Untruthful Incentives - Ineligible Students \nby the Open-Reserve Precedene Order", xlab="Reserve Size", ylab="Share")
 points(means_data_in3, pch=17,col="orange")
 dev.off()
+
+

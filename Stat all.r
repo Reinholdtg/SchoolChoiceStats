@@ -82,7 +82,7 @@ data$Distance <- abs(MinoShare-MajoShare)
 write.table(data, file='AllStat.csv',row.names=FALSE,col.names=TRUE)
 
 #-------DATA READY-------#
-data<-read.table(file.choose(),header=T)
+data<-read.table(file.choose(),header=T) #StatAll.csv
 attach(data)
 detach(data)
 names(data)<-c("School", "MinoCount", "MajoCount","MinoShare", "MajoShare", "Reserve", "Variance", "Ratio","Precedence", "Distance")
@@ -93,7 +93,6 @@ tail(data)
 data1 <- data[which(data$Precedence=='a1'),]
 data2 <- data[which(data$Precedence=='a2'),]
 data3 <- data[which(data$Precedence=='a3'),]
-
 
 data_0 <- data[which(data$Reserve==0),]
 
@@ -126,7 +125,6 @@ means_dis_data3 <-by(data3$Distance,data3$Reserve,mean)
 summary(Distance, data=data1)
 summary(Distance, data=data2)
 summary(Distance, data=data3)
-
 
 aggregate(data$Distance, list(data$Precedence),mean)
 
@@ -163,6 +161,10 @@ aggregate(data_.52$Distance, list(data_.52$Precedence),var)
 aggregate(data_.53$Distance, list(data_.53$Precedence),var)
 aggregate(data_.54$Distance, list(data_.54$Precedence),var)
 aggregate(data_.55$Distance, list(data_.55$Precedence),var)
+
+mean(data1$Distance) # 0.2856
+mean(data2$Distance) # 0.1587
+mean(data3$Distance) # 0.2880
 
 
 #-------VARIANCE PLOTS-------#
