@@ -1,5 +1,5 @@
 #------------------RESERVE-OPEN PRECEDENCE ORDER------------------#
-data_a1<-read.table(file.choose(),header=T)
+data_a1<-read.table(file.choose(),header=T) # PriorityRO.csv
 names(data_a1)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data_a1)
 detach(data_a1)
@@ -8,8 +8,9 @@ head(data_a1)
 data_a1$Precedence <- rep("a1",nrow(data_a1))
 write.table(data_a1, file='a1.csv',row.names=FALSE,col.names=TRUE)
 
+
 #------------------TOGGLE PRECEDENCE ORDER------------------#
-data_a2<-read.table(file.choose(),header=T)
+data_a2<-read.table(file.choose(),header=T) # PriorityT.csv
 names(data_a2)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data_a2)
 detach(data_a2)
@@ -18,8 +19,9 @@ head(data_a2)
 data_a2$Precedence <- rep("a2",nrow(data_a2))
 write.table(data_a2, file='a2.csv',row.names=FALSE,col.names=TRUE)
 
+
 #------------------OPEN-RESERVE PRECEDENCE ORDER------------------#
-data_a3<-read.table(file.choose(),header=T)
+data_a3<-read.table(file.choose(),header=T) # PriorityOR.csv
 names(data_a3)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data_a3)
 detach(data_a3)
@@ -40,19 +42,26 @@ tail(aa)
 
 write.table(all, file='all.csv',row.names=FALSE,col.names=TRUE)
 
-#---------ALL---------#
 
-data<-read.table(file.choose(),header=T)
-names(data)<-c("Choice", "Student", "Count","Share", "Reserve", "Precedence")
+#---------ALL---------#
+data<-read.table(file.choose(),header=T) # PriorityAll.csv
+names(data)<-c("Choice", "Student", "Count", "Share", "Reserve", "Precedence")
 attach(data)
 head(data)
+tail(data)
+
 
 #------------------------------- FIRST CHOICE -------------------------------#
-
 over1 <- data[which(data$Choice==0),]
 mino1 <- data[which(data$Choice==0 & data$Student=='-'),]
 majo1 <- data[which(data$Choice==0 & data$Student=='+'),]
 
+aggregate(over1$Share*2, list(over1$Reserve), mean)
+aggregate(mino1$Share*2, list(mino1$Reserve), mean)
+aggregate(majo1$Share*2, list(majo1$Reserve), mean)
+
+
+#--------PLOTS AND FITS--------#
 #--OVERALL FIRST CHOICE--#
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
 means_over1 <-by(2*over1$Share,over1$Reserve,mean)
@@ -66,8 +75,8 @@ summary(fit_over1)
 
 over11<-within(over1, Precedence <- relevel(Precedence, ref = "a3"))
 
-#--ELIGIBLE FIRST CHOICE--#
 
+#--ELIGIBLE FIRST CHOICE--#
 boxplot(2*Share~Reserve, data=mino1,medcol = "red", main="First Choice - Eligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 points(mean_mino1, pch=17,col="orange")
@@ -77,7 +86,6 @@ summary(fit_mino1)
 
 
 #--INELIGILBLE FIRST CHOICE--#
-
 boxplot(2*Share~Reserve, data=majo1, medcol = "red", main="First Choice - Ineligible Students",xlab="Reserve Size", ylab="Share of First Choice")
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
 points(mean_majo1, pch=17,col="orange")
@@ -87,6 +95,7 @@ summary(fit_majo1)
 
 par(mfrow=c(2,2))
 plot(fit_majo1)
+
 
 #--COMBINED--#
 par(mfrow=c(3,1))
