@@ -57,6 +57,10 @@ data_a1   <- data[which(data$Precedence=='a1' & data$Cheat==1),]
 data_a2   <- data[which(data$Precedence=='a2' & data$Cheat==1),]
 data_a3   <- data[which(data$Precedence=='a3' & data$Cheat==1),]
 
+data_a  <- data[which(data$Cheat==1),]
+data_e  <- data[which(data$Eligible==1 & data$Cheat==1),]
+data_in <- data[which(data$Eligible==0 & data$Cheat==1),]
+
 data_a_0  <- data[which(data$Cheat==1 & data$Reserve==0),] #NO AA
 data_e_0  <- data[which(data$Eligible==1 & data$Cheat==1 & data$Reserve==0),] #NO AA
 data_in_0 <- data[which(data$Eligible==0 & data$Cheat==1 & data$Reserve==0),] #NO AA
@@ -105,6 +109,16 @@ mean(data_in_0$Count/500) #NO AA
 aggregate(data_a1$Count/500, list(data_a1$Reserve), mean)
 aggregate(data_a2$Count/500, list(data_a2$Reserve), mean)
 aggregate(data_a3$Count/500, list(data_a3$Reserve), mean)
+
+aggregate(data_a$Count/500, list(data_a$Reserve), mean)
+aggregate(data_e$Count/500, list(data_e$Reserve), mean)
+aggregate(data_in$Count/500, list(data_in$Reserve), mean)
+
+aggregate(data_e2$Count/500, list(data_e2$Reserve), mean)
+aggregate(data_in2$Count/500, list(data_in2$Reserve), mean)
+
+aggregate(data_e3$Count/500, list(data_e3$Reserve), mean)
+aggregate(data_in3$Count/500, list(data_in3$Reserve), mean)
 
 mean(data_a_0$Count/500)-mean(data_a1$Count/500)
 mean(data_a_0$Count/500)-mean(data_a2$Count/500)

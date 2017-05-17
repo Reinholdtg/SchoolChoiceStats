@@ -61,26 +61,6 @@ write.table(data_a3, file='a3.csv',row.names=FALSE,col.names=TRUE)
 detach(data_a3)
 
 
-#-------------------------------COMBINED-------------------------------#
-setwd('C:/Users/SRG023/Documents/combine/')
-
-file_name <- list.files()
-temp <- lapply (file_name, read.csv, sep=' ', header=T, strip.white=T) # READING ALL THE TEXT FILES
-all<-rbind.fill(temp)
-head(all)
-tail(all)
-
-write.table(all, file='AllStat.csv',row.names=FALSE,col.names=TRUE)
-
-data<-read.table(file.choose(),header=T)
-attach(data)
-names(data)<-c("School", "MinoCount", "MajoCount","MinoShare", "MajoShare", "Reserve", "Variance", "Ratio","Precedence")
-head(data)
-tail(data)
-
-data$Distance <- abs(MinoShare-MajoShare)
-write.table(data, file='AllStat.csv',row.names=FALSE,col.names=TRUE)
-
 #-------DATA READY-------#
 data<-read.table(file.choose(),header=T) #StatAll.csv
 attach(data)
