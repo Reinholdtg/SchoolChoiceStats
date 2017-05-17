@@ -1,5 +1,5 @@
 #-------------------------------RESERVE-OPEN PRECEDENCE ORDER-------------------------------#
-data_a1<-read.table(file.choose(),header=T)
+data_a1<-read.table(file.choose(),header=T) # CheatRO.csv
 attach(data_a1)
 
 data_a1$Precedence <- rep("a1",nrow(data_a1))
@@ -14,7 +14,7 @@ detach(data_a1)
 
 
 #-------------------------------Toggle PRECEDENCE ORDER-------------------------------#
-data_a2<-read.table(file.choose(),header=T)
+data_a2<-read.table(file.choose(),header=T) # CheatT.csv
 attach(data_a2)
 
 data_a2$Precedence <- rep("a2",nrow(data_a2))
@@ -29,7 +29,7 @@ detach(data_a2)
 
 
 #-------------------------------OPEN-RESERVE PRECEDENCE ORDER-------------------------------#
-data_a3<-read.table(file.choose(),header=T)
+data_a3<-read.table(file.choose(),header=T) # CheatOR.csv
 attach(data_a3)
 
 data_a3$Precedence <- rep("a3",nrow(data_a3))

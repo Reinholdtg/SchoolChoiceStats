@@ -61,6 +61,10 @@ aggregate(mino1$Share*2, list(mino1$Reserve), mean)
 aggregate(majo1$Share*2, list(majo1$Reserve), mean)
 
 
+#--------MEAN--------#
+aggregate(over1$Share*2, list(over1$Reserve), mean)
+
+
 #--------PLOTS AND FITS--------#
 #--OVERALL FIRST CHOICE--#
 boxplot(2*Share~Reserve, data=over1, medcol = "red", main="First Choice - All Students", xlab="Reserve Size", ylab="Share of First Choice")
@@ -72,7 +76,7 @@ cor(over1$Student,over1$Share)
 fit_over1 <- lm(2*Share~Reserve+Student+Precedence, data=over1)
 fit_over1
 summary(fit_over1)
-
+	
 over11<-within(over1, Precedence <- relevel(Precedence, ref = "a3"))
 
 
@@ -120,7 +124,7 @@ r <- c(0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.12,0.13,0.14,0.
 plot(r, RO, col="blue", main="First Choice Ratio",xlab="Reserve Size", ylab="Ratio")
 points(r, T, col="red")
 points(r, OR, col="green")
-legend(1, 90, legend=c(“Reserve-Open”,”Toggle”,”Open-Reserve”))
+legend(1, .5, legend=c(“Reserve-Open”,”Toggle”,”Open-Reserve”))
 abline(h=1)
 
 png(file="First Choice Ratio - All.png",width=4455, height=3150, res=500)

@@ -1,4 +1,4 @@
-data<-read.table(file.choose(),header=T)
+data<-read.table(file.choose(),header=T) #PriorityOR.csv
 names(data)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data)
 detach(data)

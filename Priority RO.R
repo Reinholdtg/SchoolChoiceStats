@@ -1,8 +1,9 @@
-data<-read.table(file.choose(),header=T)
+data<-read.table(file.choose(),header=T) # PriorityRO.csv
 names(data)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data)
 detach(data)
 head(data)
+tail(data)
 summary(data)
 
 par(mfrow=c(1,1))
@@ -31,6 +32,11 @@ majo1 <- data[which(data$Choice==0 & data$Reserve==1 & data$Student=='+'),]
 means_over1 <-by(2*over1$Share,over1$Reserve,mean)
 mean_mino1<- by(2*mino1$Share,mino1$Reserve,mean)
 mean_majo1<- by(2*majo1$Share,majo1$Reserve,mean)
+
+aggregate(over1$Share*2, list(over1$Reserve), mean)
+aggregate(mino1$Share*2, list(mino1$Reserve), mean)
+aggregate(majo1$Share*2, list(majo1$Reserve), mean)
+
 
 mean(over1$Share*2) #0.7845
 
@@ -108,6 +114,7 @@ var(mino1$Share)		#0.0009351612
 var(majo0$Share) 		#0.0009383809
 var(majo0.5$Share)	#0.002700995
 var(majo1$Share)		#0.007151145
+
 
 #------------------------------- FIFTH CHOICE -------------------------------#
 #--SUBSETS--#

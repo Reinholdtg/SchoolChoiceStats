@@ -1,17 +1,20 @@
-data<-read.table(file.choose(),header=T)
+data<-read.table(file.choose(),header=T) # PriorityT.csv
 names(data)<-c("Choice", "Student", "Count","Share", "Reserve")
 attach(data)
 detach(data)
 head(data)
+tail(data)
 summary(data)
 
 par(mfrow=c(1,1))
+
 
 #------------------------------- FIRST CHOICE -------------------------------#
 #--SUBSETS--#
 over1 <- data[which(data$Choice==0),]
 mino1 <- data[which(data$Choice==0 & data$Student=='-'),]
 majo1 <- data[which(data$Choice==0 & data$Student=='+'),]
+
 
 #MEANS#
 means_over1 <-by(2*over1$Share,over1$Reserve,mean)
@@ -43,7 +46,7 @@ points(means_over1, pch=17,col="orange")
 fit_over1 <- lm(2*Share~Reserve+Student, data=over1)
 fit_over1
 summary(fit_over1, degits=10)
-
+	
 par(mfrow=c(2,2))
 plot(fit_over1)
 
@@ -107,6 +110,7 @@ var(mino1$Share)		#0.002659087
 var(majo0$Share) 		#0.0009175993
 var(majo0.5$Share)	#0.002721304
 var(majo1$Share)		#0.002669791
+
 
 #------------------------------- FIFTH CHOICE -------------------------------#
 #--SUBSETS--#
